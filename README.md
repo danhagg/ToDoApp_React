@@ -110,11 +110,16 @@ Add to `index.html`, inside the `body` elements
 ```html
   <script src="/app/bundle.js"></script>
 ```
+The entirety of the app will be compiled and delivered into `bundle.js`.
 
 To `index.js` add `alert('it works');`
-Remember that index.js and all other .js files (and their JSX/JS contents) feed into and are compiled to the `dist/app/bundle.js` file which is passed into the in index.html
+Remember that `index.js` and all other `.js` files (and their JSX/JS contents) feed into and are compiled to the `dist/app/bundle.js` file which, shown above, is passed into the in `index.html`.
 
-Run with
-`npm start` and check localhost:5000
+Run with `npm start` in the terminal and check `localhost:5000`. You should see the alert you coded in the `index.js`.
 
-Open browser on localhost5000... And you should see your alert from index.js
+OK, thats a lot of prepping just to get an alert on the screen, but lets push our v0.1 to github and move onto v0.2 where we can start some proper app development.
+
+
+`git add -A`
+`git commit -m"development tools set up"`
+`git push`
