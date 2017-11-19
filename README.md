@@ -10,24 +10,33 @@ Let's make a repository on GitHub where we can keep all our versions of this app
 
 Then, git from our terminal, git clone the GutHub repository.
 
-`git clone git@github.com:danhagg/todo-app.git`
+```
+git clone git@github.com:danhagg/todo-app.git
+```
 
-Add all of our files
-`git add .`
-Commit all our files with a message
-`git commit -m"First commit"`
-Paste in the destination we copied from gitgub for the remote repository
-`git remote add origin git@github.com:danhagg/todo-app.git`
-Then push the current folder to GitHub
-`git push -u origin master`
+1. Add all of our files
+2. Commit all our files with a message
+3. Paste in the destination we copied from gitgub for the remote repository
+4. Then push the current folder to GitHub
+
+
+```
+git add .
+git commit -m"First commit"
+git remote add origin git@github.com:danhagg/todo-app.git
+git push -u origin master
+```
 
 Now we have our local and GitHub master up-to-date and synced with each other we can make a new local version of the app to play with and make mistakes on whilst keeping our master version safe.
 
 Let's create a new branch
-`git branch v0.1`
-and start workoing on it
-`git checkout v0.1`
+and start working on it
+```
+git branch v0.1
+git checkout v0.1
+```
 
+### v0.1 - Prep (an annoying amount of it too)
 Add `/dist` to `.gitignore` file
 
 Make an `html` file in the `src` folder with the following...
@@ -42,23 +51,29 @@ Make an `html` file in the `src` folder with the following...
 </head>
 
 <body>
+  <div id="app"></div>
 
+  <script src="/app/bundle.js"></script>
 </body>
 </html>
 ```
 
-`npm init`
-Initializes a package.json file to keep track of all our dependencies. Agree to all, add license 'MIT'.
-
-There is now a `package.json` file now holds all our dependencies.
+Then in the terminal we need to initialize our repo to use node packages. The following initializes a `package.json` file to keep track of all our dependencies. Agree to all, add license 'MIT'.
+```
+npm init
+```
 
 Need to install install `react` and `react-dom`
-`npm install react react-dom --save`
+```
+npm install react react-dom --save
+```
 
-install all `babel` packages as development dependencies
-`npm install babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev`
-Then install webpack as a development dependency
-`npm install webpack webpack-dev-server --save-dev`
+Install all `babel` packages as development dependencies.
+Then install webpack as a development dependency.
+```
+npm install babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev
+npm install webpack webpack-dev-server --save-dev
+```
 
 Create `webpack.config` file to root of the todo-app folder. This file will control how `babel` converts `JSX/ES2015` into JavaScript and where to output that JavaScript. Add following to `webpack.config` file.
 
@@ -97,7 +112,7 @@ module.exports = {
 ```
 create a new file `index.js` in a new folder called `app` in `src` folder. You're directory structure should look something like this!
 
-![image](readme_images/dir_1.png
+![image](readme_images/dir_1.png)
 
   Add to `scripts` in the the `package.json` file so we can run a bunch of stuff with a few simple commands.
 
@@ -119,7 +134,57 @@ Run with `npm start` in the terminal and check `localhost:5000`. You should see 
 
 OK, thats a lot of prepping just to get an alert on the screen, but lets push our v0.1 to github and move onto v0.2 where we can start some proper app development.
 
+```
+git add -A
+git commit -m"development tools set up"
+git push
+```
 
-`git add -A`
-`git commit -m"development tools set up"`
-`git push`
+On github repository, Make a new pull request (compare master to v0.1), merge pull request.
+
+Back in terminal change to and update your local master.
+```
+git checkout master
+git pull
+```
+
+Create and change to `v0.2` for continuing development off the `master` branch.
+
+```
+git branch v0.2
+git checkout v0.2
+```
+
+### v0.2 Components (Here we go...)
+Most of the react code is made up of components.
+We shall start the ToDo app with making a ToDo component.
+Clear the `src/app/index.js` file of contents.
+
+```
+var React = require('react');
+
+// react DOM module
+var ReactDOM = require('react-dom');
+
+// Create component
+// ES6 way or React way. This way is ES6??
+class ToDo extends React.Component {
+  render () {
+    return (
+      <div>
+        <h1>Should I stay?</h1>
+        <p>Or should I go now?</p>
+      </div>
+    );
+  }
+}
+
+// Put component into html with react DOM module
+// And output to the index.html to the handle app
+const app = document.getElementById('app');
+ReactDOM.render(<ToDo />, app);
+```
+
+The webpack should compile the `index.js` code, to vanilla JavaScript in `bundle.js` and and produce the output to the `div` with the "id=app" as webpage on `localhost:3000`.
+
+To debug go to chrome web store, search 'React Developer Tools' or follow the link [here](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and 'add to chrome'. Now, when we inspect the web page (Right click, inspect) a React tab appears and we can view our components (if they are on the current web page/ try facebook) in the browser.
