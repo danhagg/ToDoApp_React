@@ -205,3 +205,33 @@ git pull
 git branch v0.3
 git checkout v0.3
 ```
+### Props
+`Props` allow us to pass data into our components which we can display on the web page. Used along with `states`.
+
+To add props we can for the moment work on the `index.js` file.
+
+We can declare const and var in the file. to access these variables we use `{this.props}` to obtain all the availbale properties in the component (such as `mssg` and `moreLyrics`)
+
+```js
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+class ToDo extends React.Component {
+  render () {
+    return (
+      <div>
+        <h1>Should I stay?</h1>
+        <p>Or should I go now?</p>
+        <p>{this.props.mssg}</p>
+        <p>{this.props.moreLyrics.first}</p>
+        <p>It will be {this.props.moreLyrics.second}</p>
+      </div>
+    );
+  }
+}
+
+var more = {first: 'If I stay', second: 'double'}
+
+const app = document.getElementById('app');
+ReactDOM.render(<ToDo const mssg = "If I go there will be trouble!" moreLyrics={more} />, app);
+```
