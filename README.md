@@ -137,7 +137,7 @@ OK, thats a lot of prepping just to get an alert on the screen, but lets push ou
 ```
 git add -A
 git commit -m"development tools set up"
-git push
+git push --set-upstream origin v0.1
 ```
 
 On github repository, Make a new pull request (compare master to v0.1), merge pull request.
@@ -188,3 +188,20 @@ ReactDOM.render(<ToDo />, app);
 The webpack should compile the `index.js` code, to vanilla JavaScript in `bundle.js` and and produce the output to the `div` with the "id=app" as webpage on `localhost:3000`.
 
 To debug go to chrome web store, search 'React Developer Tools' or follow the link [here](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and 'add to chrome'. Now, when we inspect the web page (Right click, inspect) a React tab appears and we can view our components (if they are on the current web page/ try facebook) in the browser.
+
+Push new component to github
+```
+git add -A
+git commit -m"first component"
+git push --set-upstream origin v0.2
+```
+
+On github, Make new pull request, compare master vs v0.2, confirm merge.
+
+Back on your local repository
+```
+git checkout master
+git pull
+git branch v0.3
+git checkout v0.3
+```
